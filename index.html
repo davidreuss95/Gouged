@@ -3,562 +3,800 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gouged Tattoo Studio Berlin</title>
-  <meta name="description" content="Tattoo Studio und Kollektiv in Berlin Lichtenberg. Flash-Tattoos, Custom-Projekte und Freehand-Arbeiten. Alle Körper willkommen.">
+  <title>Gouged Tattoo Berlin</title>
+  <meta name="description" content="Tattoo Studio Berlin Lichtenberg — Flash, Custom, Freehand. Alle Körper willkommen.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Droid+Serif:ital,wght@0,400;0,700;1,400&display=swap">
   <style>
-    :root {
-      --red: #E51501;
-      --black: #0a0a0a;
-      --white: #f0ece4;
-      --gray: #A8A8A8;
-      --paper: #e8e2d6;
-      --dark: #111;
-      --darkgray: #1a1a1a;
-    }
+    /* ─── RESET & BASE ─── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Droid Serif', serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    body {
+      font-family: 'Droid Serif', serif;
+      background: #111;
+      color: #f0ece4;
+      overflow-x: hidden;
+    }
 
-    /* GRAIN */
+    /* ─── GRAIN ─── */
     body::after {
       content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 9999;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-      opacity: 0.35;
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9000;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+      opacity: 0.5;
     }
 
-    /* NAV */
+    /* ─── VARIABLES ─── */
+    :root {
+      --red:    #E51501;
+      --black:  #111;
+      --paper:  #ddd8cc;
+      --dark:   #0d0d0d;
+      --white:  #f0ece4;
+      --gray:   #888;
+    }
+
+    /* ─── NAV ─── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 800;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 58px;
-      background: var(--black);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      transition: border-color 0.3s;
+      padding: 0 40px; height: 52px;
+      background: rgba(13,13,13,0.97);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .nav-logo img { height: 34px; width: auto; display: block; }
-    .nav-logo { text-decoration: none; }
-    .nav-center { display: flex; gap: 36px; }
-    .nav-center a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
-    .nav-center a:hover { color: var(--white); }
-    .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-cta { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); background: var(--red); padding: 10px 20px; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+    .nav-logo img { height: 30px; display: block; }
+    .nav-logo-text {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--white); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #888; text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-cta {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--white);
+      background: var(--red); padding: 8px 16px; text-decoration: none;
+      transition: opacity 0.2s;
+    }
     .nav-cta:hover { opacity: 0.85; }
-    .nav-cta::after { content: '→'; }
-    .nav-ig { font-size: 11px; color: var(--gray); text-decoration: none; }
+    .nav-ig { font-size: 10px; color: #666; text-decoration: none; }
     .nav-ig:hover { color: var(--white); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 1px; background: var(--white); }
-    .mobile-menu { display: none; position: fixed; top: 58px; left: 0; right: 0; background: var(--black); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 24px 32px; flex-direction: column; gap: 20px; z-index: 499; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 15px; color: var(--white); text-decoration: none; }
+    .hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 20px; height: 1px; background: var(--white); }
+    .mob-menu { display: none; position: fixed; top: 52px; left: 0; right: 0; background: var(--dark); padding: 20px 28px; flex-direction: column; gap: 16px; z-index: 799; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mob-menu.open { display: flex; }
+    .mob-menu a { font-size: 14px; color: var(--white); text-decoration: none; letter-spacing: 0.06em; }
 
-    /* UTIL */
-    .sec-eyebrow { font-size: 11px; letter-spacing: 0.2em; color: var(--red); text-transform: uppercase; font-style: italic; margin-bottom: 10px; display: block; }
-    .sec-title { font-size: clamp(24px, 3vw, 42px); font-weight: 700; line-height: 1.08; text-transform: uppercase; letter-spacing: 0.02em; }
-    .sec-title em { font-style: italic; }
-    .btn-red { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: var(--white); font-family: 'Droid Serif', serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 14px 28px; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s; }
-    .btn-red:hover { opacity: 0.85; }
+    /* ─── TORN PAPER EFFECT ─── */
+    .torn-section {
+      position: relative;
+    }
+    .torn-top-white::before,
+    .torn-bottom-white::after,
+    .torn-top-dark::before,
+    .torn-bottom-dark::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; height: 28px;
+      z-index: 10;
+    }
+    .torn-top-white::before { top: -14px; background: var(--paper); clip-path: polygon(0 100%,1% 30%,2% 80%,3% 20%,4% 70%,5% 10%,6% 60%,7% 90%,8% 25%,9% 75%,10% 15%,11% 65%,12% 95%,13% 35%,14% 85%,15% 20%,16% 70%,17% 5%,18% 55%,19% 90%,20% 30%,21% 75%,22% 15%,23% 65%,24% 100%,25% 40%,26% 80%,27% 20%,28% 60%,29% 95%,30% 35%,31% 75%,32% 10%,33% 55%,34% 85%,35% 25%,36% 70%,37% 5%,38% 50%,39% 90%,40% 30%,41% 75%,42% 15%,43% 60%,44% 95%,45% 40%,46% 80%,47% 20%,48% 65%,49% 100%,50% 45%,51% 85%,52% 25%,53% 70%,54% 10%,55% 50%,56% 90%,57% 35%,58% 75%,59% 15%,60% 60%,61% 95%,62% 40%,63% 80%,64% 20%,65% 65%,66% 100%,67% 45%,68% 85%,69% 25%,70% 70%,71% 5%,72% 50%,73% 90%,74% 30%,75% 75%,76% 15%,77% 60%,78% 95%,79% 40%,80% 80%,81% 20%,82% 65%,83% 100%,84% 45%,85% 85%,86% 25%,87% 70%,88% 5%,89% 50%,90% 90%,91% 30%,92% 75%,93% 15%,94% 60%,95% 95%,96% 40%,97% 80%,98% 20%,99% 65%,100% 100%); }
+    .torn-bottom-white::after { bottom: -14px; background: var(--paper); clip-path: polygon(0 0,1% 70%,2% 20%,3% 80%,4% 30%,5% 90%,6% 40%,7% 10%,8% 75%,9% 25%,10% 85%,11% 35%,12% 5%,13% 65%,14% 15%,15% 80%,16% 30%,17% 95%,18% 45%,19% 10%,20% 70%,21% 25%,22% 85%,23% 35%,24% 0%,25% 60%,26% 20%,27% 80%,28% 40%,29% 5%,30% 65%,31% 25%,32% 90%,33% 45%,34% 15%,35% 75%,36% 30%,37% 95%,38% 50%,39% 10%,40% 70%,41% 25%,42% 85%,43% 40%,44% 5%,45% 60%,46% 20%,47% 80%,48% 35%,49% 0%,50% 55%,51% 15%,52% 75%,53% 30%,54% 90%,55% 50%,56% 10%,57% 65%,58% 25%,59% 85%,60% 40%,61% 5%,62% 60%,63% 20%,64% 80%,65% 35%,66% 0%,67% 55%,68% 15%,69% 75%,70% 30%,71% 95%,72% 50%,73% 10%,74% 70%,75% 25%,76% 85%,77% 40%,78% 5%,79% 60%,80% 20%,81% 80%,82% 35%,83% 0%,84% 55%,85% 15%,86% 75%,87% 30%,88% 95%,89% 50%,90% 10%,91% 70%,92% 25%,93% 85%,94% 40%,95% 5%,96% 60%,97% 20%,98% 80%,99% 35%,100% 0%); }
+    .torn-top-dark::before { top: -14px; background: var(--black); clip-path: polygon(0 100%,1% 30%,2% 80%,3% 20%,4% 70%,5% 10%,6% 60%,7% 90%,8% 25%,9% 75%,10% 15%,11% 65%,12% 95%,13% 35%,14% 85%,15% 20%,16% 70%,17% 5%,18% 55%,19% 90%,20% 30%,21% 75%,22% 15%,23% 65%,24% 100%,25% 40%,26% 80%,27% 20%,28% 60%,29% 95%,30% 35%,31% 75%,32% 10%,33% 55%,34% 85%,35% 25%,36% 70%,37% 5%,38% 50%,39% 90%,40% 30%,41% 75%,42% 15%,43% 60%,44% 95%,45% 40%,46% 80%,47% 20%,48% 65%,49% 100%,50% 45%,51% 85%,52% 25%,53% 70%,54% 10%,55% 50%,56% 90%,57% 35%,58% 75%,59% 15%,60% 60%,61% 95%,62% 40%,63% 80%,64% 20%,65% 65%,66% 100%,67% 45%,68% 85%,69% 25%,70% 70%,71% 5%,72% 50%,73% 90%,74% 30%,75% 75%,76% 15%,77% 60%,78% 95%,79% 40%,80% 80%,81% 20%,82% 65%,83% 100%,84% 45%,85% 85%,86% 25%,87% 70%,88% 5%,89% 50%,90% 90%,91% 30%,92% 75%,93% 15%,94% 60%,95% 95%,96% 40%,97% 80%,98% 20%,99% 65%,100% 100%); }
+    .torn-bottom-dark::after { bottom: -14px; background: var(--dark); clip-path: polygon(0 0,1% 70%,2% 20%,3% 80%,4% 30%,5% 90%,6% 40%,7% 10%,8% 75%,9% 25%,10% 85%,11% 35%,12% 5%,13% 65%,14% 15%,15% 80%,16% 30%,17% 95%,18% 45%,19% 10%,20% 70%,21% 25%,22% 85%,23% 35%,24% 0%,25% 60%,26% 20%,27% 80%,28% 40%,29% 5%,30% 65%,31% 25%,32% 90%,33% 45%,34% 15%,35% 75%,36% 30%,37% 95%,38% 50%,39% 10%,40% 70%,41% 25%,42% 85%,43% 40%,44% 5%,45% 60%,46% 20%,47% 80%,48% 35%,49% 0%,50% 55%,51% 15%,52% 75%,53% 30%,54% 90%,55% 50%,56% 10%,57% 65%,58% 25%,59% 85%,60% 40%,61% 5%,62% 60%,63% 20%,64% 80%,65% 35%,66% 0%,67% 55%,68% 15%,69% 75%,70% 30%,71% 95%,72% 50%,73% 10%,74% 70%,75% 25%,76% 85%,77% 40%,78% 5%,79% 60%,80% 20%,81% 80%,82% 35%,83% 0%,84% 55%,85% 15%,86% 75%,87% 30%,88% 95%,89% 50%,90% 10%,91% 70%,92% 25%,93% 85%,94% 40%,95% 5%,96% 60%,97% 20%,98% 80%,99% 35%,100% 0%); }
+
+    /* ─── UTILS ─── */
+    .sec-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); font-style: italic; display: block; margin-bottom: 8px;
+    }
+    .sec-heading {
+      font-size: clamp(20px, 2.8vw, 34px); font-weight: 700;
+      text-transform: uppercase; line-height: 1.1; letter-spacing: 0.02em;
+    }
+    .sec-heading em { font-style: italic; }
+
+    /* ─── 01 HERO ─── */
+    .hero {
+      margin-top: 52px;
+      position: relative;
+      min-height: calc(100vh - 52px);
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1600&q=80') center/cover;
+      filter: brightness(0.28) contrast(1.2);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 60px 48px 72px;
+      max-width: 640px;
+    }
+    .hero-eyebrow {
+      font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--red); font-style: italic; margin-bottom: 18px; display: block;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 80px); font-weight: 700;
+      line-height: 0.95; text-transform: uppercase;
+      color: var(--white); margin-bottom: 18px;
+    }
+    .hero h1 em { display: block; font-style: italic; }
+    .hero-sub {
+      font-size: 13px; color: rgba(255,255,255,0.48);
+      max-width: 400px; line-height: 1.8; margin-bottom: 32px;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: 1px solid rgba(255,255,255,0.4);
+      color: var(--white); font-family: 'Droid Serif', serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; padding: 12px 22px; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-primary::before { content: '→'; color: var(--red); }
+    .btn-primary:hover { border-color: var(--red); background: rgba(229,21,1,0.08); }
+    .btn-red {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--red); color: var(--white);
+      font-family: 'Droid Serif', serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 12px 22px; text-decoration: none; border: none; cursor: pointer;
+      transition: opacity 0.2s;
+    }
     .btn-red::after { content: '→'; }
-    .btn-white { display: inline-flex; align-items: center; gap: 8px; background: var(--white); color: var(--red); font-family: 'Droid Serif', serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 14px 32px; text-decoration: none; transition: opacity 0.2s; }
-    .btn-white:hover { opacity: 0.88; }
-    .btn-white::after { content: '→'; }
+    .btn-red:hover { opacity: 0.85; }
 
-    /* 01 HERO — split */
-    .hero { margin-top: 58px; display: grid; grid-template-columns: 55% 45%; min-height: calc(100vh - 58px); }
-    .hero-img { position: relative; overflow: hidden; }
-    .hero-img-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1400&q=80') center/cover; filter: brightness(0.38) contrast(1.15); transition: transform 8s ease; }
-    .hero:hover .hero-img-bg { transform: scale(1.03); }
-    .hero-img-content { position: relative; z-index: 2; padding: 64px 56px; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
-    .hero-eyebrow { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red); font-style: italic; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(44px, 5.5vw, 82px); font-weight: 700; line-height: 0.93; text-transform: uppercase; color: var(--white); margin-bottom: 22px; }
-    .hero h1 em { font-style: italic; color: var(--red); display: block; }
-    .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 380px; line-height: 1.8; margin-bottom: 36px; }
+    /* ─── SLIDESHOW ─── */
+    .slideshow {
+      position: relative; overflow: hidden;
+      height: 480px; background: #000;
+    }
+    .slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 1s ease;
+    }
+    .slide.active { opacity: 1; }
+    .slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.75);
+    }
+    .slide-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 48px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .slide-dots {
+      position: absolute; bottom: 20px; right: 48px;
+      display: flex; gap: 8px;
+    }
+    .slide-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.3); cursor: pointer;
+      transition: background 0.3s;
+    }
+    .slide-dot.active { background: var(--red); }
 
-    /* HERO RIGHT — paper */
-    .hero-right { background: var(--paper); color: var(--black); padding: 64px 48px; display: flex; flex-direction: column; justify-content: center; }
-    .hero-right .sec-eyebrow { color: var(--red); }
-    .hero-right .sec-title { font-size: clamp(20px, 2.5vw, 34px); }
-    .angebot-list-hero { list-style: none; margin-top: 28px; }
-    .angebot-list-hero li { display: grid; grid-template-columns: 60px 1fr; gap: 14px; align-items: center; padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,0.09); }
-    .angebot-list-hero li:last-child { border-bottom: none; }
-    .angebot-thumb { width: 60px; height: 60px; object-fit: cover; display: block; }
-    .angebot-label strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-    .angebot-label span { font-size: 12px; color: #666; }
+    /* ─── 02 ANGEBOT ─── */
+    .angebot {
+      background: var(--paper); color: #1a1a1a;
+      padding: 56px 48px 70px;
+      position: relative; z-index: 5;
+    }
+    .angebot-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: start;
+    }
+    .angebot-left .sec-label { color: var(--red); }
+    .angebot-left .sec-heading { color: #1a1a1a; margin-bottom: 20px; }
+    .angebot-desc { font-size: 13px; color: #555; line-height: 1.8; margin-bottom: 28px; max-width: 380px; }
+    .angebot-items { list-style: none; }
+    .angebot-item {
+      display: grid; grid-template-columns: 56px 1fr;
+      gap: 14px; align-items: center;
+      padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .angebot-item:last-child { border-bottom: none; }
+    .angebot-item-img { width: 56px; height: 56px; object-fit: cover; display: block; }
+    .angebot-item-label strong { display: block; font-size: 13px; font-weight: 700; margin-bottom: 1px; }
+    .angebot-item-label span { font-size: 11px; color: #777; }
+    /* right: mosaic grid */
+    .angebot-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 5px;
+    }
+    .angebot-right img { width: 100%; object-fit: cover; display: block; }
+    .angebot-right img:nth-child(1) { grid-column: 1 / -1; aspect-ratio: 16/9; }
+    .angebot-right img:nth-child(2) { aspect-ratio: 1; }
+    .angebot-right img:nth-child(3) { aspect-ratio: 1; }
 
-    /* 02 STUDIO BILDER */
-    .studio-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .studio-imgs img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
-
-    /* 03 VERTRAUEN */
-    .vertrauen { background: var(--black); padding: 72px 48px; position: relative; }
-    .vertrauen-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 44px; }
-    .vcol-title { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; font-weight: 700; }
-    .review-item { border-left: 2px solid var(--red); padding: 0 0 22px 20px; margin-bottom: 22px; }
-    .review-item:last-child { margin-bottom: 0; padding-bottom: 0; }
-    .review-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.8; font-style: italic; margin-bottom: 12px; }
+    /* ─── 03 VERTRAUEN ─── */
+    .vertrauen {
+      background: var(--black); color: var(--white);
+      padding: 64px 48px 72px;
+      position: relative; z-index: 5;
+    }
+    .vertrauen-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 56px; margin-top: 40px;
+    }
+    .v-col-title {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--white);
+      margin-bottom: 20px;
+    }
+    .review-block { margin-bottom: 24px; }
+    .review-quote {
+      font-size: 13px; color: rgba(255,255,255,0.55);
+      line-height: 1.8; font-style: italic; margin-bottom: 12px;
+    }
     .review-meta { display: flex; align-items: center; gap: 10px; }
-    .review-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; background: #333; }
-    .review-name { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
+    .review-ava { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: #333; }
+    .review-name { font-size: 12px; font-weight: 700; }
     .review-stars { font-size: 10px; color: var(--red); letter-spacing: 2px; }
-    .trust-badges { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 32px; }
-    .trust-badge { background: var(--darkgray); padding: 20px 16px; text-align: center; }
-    .trust-num { font-size: 32px; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 6px; }
-    .trust-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
+    .trust-row {
+      display: flex; gap: 2px; margin-top: 32px;
+    }
+    .trust-box {
+      flex: 1; background: #1a1a1a; padding: 18px 12px; text-align: center;
+    }
+    .trust-val { font-size: 26px; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 5px; }
+    .trust-lbl { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
 
-    /* 04 PLAN */
-    .plan { background: var(--paper); color: var(--black); padding: 72px 48px; }
-    .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 44px; align-items: start; }
-    .plan-steps { }
-    .plan-step { display: grid; grid-template-columns: 72px 1fr; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .plan-step:last-child { border-bottom: none; }
-    .plan-num { font-size: 64px; font-weight: 700; color: rgba(0,0,0,0.07); line-height: 1; font-style: italic; }
-    .plan-body h3 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
-    .plan-body p { font-size: 13px; color: #666; line-height: 1.7; }
-    .plan-right { }
-    .plan-guarantee { background: var(--black); color: var(--white); padding: 24px 28px; display: flex; align-items: center; gap: 16px; font-size: 14px; margin-bottom: 24px; }
-    .plan-guarantee span:first-child { font-size: 22px; flex-shrink: 0; }
-
-    /* 05 STAKES */
-    .stakes { display: grid; grid-template-columns: 1fr 1fr; }
-    .stakes-col { padding: 72px 48px; }
-    .stakes-col.bad { background: var(--darkgray); }
-    .stakes-col.good { background: var(--red); }
-    .stakes-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-style: italic; margin-bottom: 14px; display: block; opacity: 0.65; }
-    .stakes-title { font-size: clamp(20px, 2.5vw, 32px); font-weight: 700; text-transform: uppercase; line-height: 1.1; margin-bottom: 32px; }
-    .stakes-list { list-style: none; }
-    .stakes-list li { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 14px; }
-    .stakes-list li::before { content: '—'; flex-shrink: 0; opacity: 0.5; }
-    .stakes-col.good .stakes-list li { border-color: rgba(255,255,255,0.15); }
-    .stakes-col.good .stakes-list li::before { content: '✦'; font-size: 9px; opacity: 1; }
-
-    /* ARTISTS */
-    .artists { background: var(--black); padding: 72px 48px; }
-    .artists-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
-    .artists-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
-    .artist-card { background: var(--darkgray); overflow: hidden; }
-    .artist-portrait { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; filter: grayscale(25%); transition: transform 0.5s ease, filter 0.4s ease; }
+    /* ─── ARTISTS ─── */
+    .artists {
+      background: var(--black); color: var(--white);
+      padding: 0 0 72px;
+      position: relative; z-index: 5;
+    }
+    .artists-header { padding: 0 48px 32px; }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2px;
+      padding: 0 48px;
+    }
+    .artist-card {
+      background: #161616; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .artist-portrait-wrap { position: relative; overflow: hidden; }
+    .artist-portrait {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
+      display: block; filter: grayscale(20%);
+      transition: transform 0.5s ease, filter 0.4s;
+    }
     .artist-card:hover .artist-portrait { transform: scale(1.04); filter: grayscale(0%); }
-    .artist-works-strip { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+    .artist-works-strip {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 2px;
+    }
     .artist-work-img { aspect-ratio: 1; object-fit: cover; display: block; width: 100%; }
-    .artist-info { padding: 20px 20px 24px; }
-    .artist-lang-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-    .artist-flag { font-size: 14px; }
-    .artist-lang-label { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
-    .artist-name-big { font-size: 26px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-    .artist-handle-red { font-size: 11px; color: var(--red); font-style: italic; display: block; margin-bottom: 10px; text-decoration: none; }
-    .artist-handle-red:hover { text-decoration: underline; }
-    .artist-tags-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
-    .artist-tag-small { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.12); color: var(--gray); padding: 3px 7px; }
-    .artist-bio-small { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.65; margin-bottom: 14px; }
-    .artist-page-link { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); text-decoration: none; border-bottom: 1px solid var(--red); padding-bottom: 1px; }
+    .artist-info { padding: 14px 14px 18px; flex: 1; }
+    .artist-lang-line {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 3px;
+    }
+    .artist-name {
+      font-size: 18px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: 4px;
+    }
+    .artist-handle {
+      font-size: 10px; color: var(--red); font-style: italic;
+      display: block; margin-bottom: 8px; text-decoration: none;
+    }
+    .artist-tags { margin-bottom: 10px; }
+    .artist-tag {
+      display: block; font-size: 9px; color: rgba(255,255,255,0.45);
+      padding: 2px 0; letter-spacing: 0.04em;
+    }
+    .artist-tag::before { content: '· '; color: var(--red); }
+    .artist-link {
+      font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red); text-decoration: none;
+      border-bottom: 1px solid var(--red); padding-bottom: 1px;
+      display: inline-block; margin-top: 6px;
+    }
 
-    /* REVIEWS */
-    .reviews { background: var(--paper); color: var(--black); padding: 72px 48px; }
-    .reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
-    .review-card-paper { background: white; padding: 28px; border-left: 3px solid var(--red); }
-    .review-stars-red { color: var(--red); font-size: 12px; letter-spacing: 3px; margin-bottom: 14px; }
-    .review-text-dark { font-size: 14px; color: #444; line-height: 1.8; font-style: italic; margin-bottom: 16px; }
-    .review-author-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #999; }
+    /* ─── MAP & INFO ─── */
+    .map-section { position: relative; z-index: 5; }
+    .map-section iframe {
+      display: block; width: 100%; height: 320px; border: none;
+      filter: grayscale(30%) contrast(1.05) brightness(0.85);
+    }
+    .map-info {
+      background: var(--dark);
+      padding: 36px 48px;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 24px;
+      border-top: 2px solid var(--red);
+    }
+    .map-col-title {
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 8px;
+    }
+    .map-col-val {
+      font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.85;
+    }
+    .map-col-val strong { color: var(--white); }
+    .map-col-val .r { color: var(--red); }
 
-    /* MAP */
-    .map-section { }
-    .map-section iframe { display: block; width: 100%; height: 340px; border: none; filter: grayscale(25%) contrast(1.1) brightness(0.85); }
-    .map-bar { background: var(--black); border-top: 2px solid var(--red); padding: 32px 48px; display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
-    .map-col-title { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
-    .map-col-val { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.8; }
-    .map-col-val strong { color: var(--white); display: block; margin-bottom: 2px; }
-    .map-col-val .highlight { color: var(--red); }
-
-    /* LEAD MAGNET */
-    .lead-magnet { background: var(--darkgray); padding: 72px 48px; }
+    /* ─── LEAD MAGNET ─── */
+    .lead {
+      background: var(--black); color: var(--white);
+      padding: 72px 48px;
+      position: relative; z-index: 5;
+    }
     .lead-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-    .lead-list { list-style: none; margin-top: 24px; }
-    .lead-list li { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; color: rgba(255,255,255,0.55); }
-    .lead-list li::before { content: '✦'; color: var(--red); font-size: 9px; flex-shrink: 0; }
+    .lead-list { list-style: none; margin-top: 22px; }
+    .lead-list li {
+      display: flex; gap: 12px; align-items: baseline;
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .lead-list li::before { content: '✦'; color: var(--red); font-size: 8px; flex-shrink: 0; }
     .lead-form { display: flex; flex-direction: column; }
-    .lead-form input, .lead-form textarea, .lead-form select { font-family: 'Droid Serif', serif; font-size: 14px; border: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 16px 0; background: transparent; color: var(--white); width: 100%; transition: border-color 0.2s; outline: none; appearance: none; border-radius: 0; }
-    .lead-form input::placeholder, .lead-form textarea::placeholder { color: rgba(255,255,255,0.25); }
-    .lead-form input:focus, .lead-form textarea:focus, .lead-form select:focus { border-color: var(--red); }
-    .lead-form select { color: rgba(255,255,255,0.4); }
+    .lead-form input,
+    .lead-form textarea,
+    .lead-form select {
+      font-family: 'Droid Serif', serif; font-size: 13px;
+      border: none; border-bottom: 1px solid rgba(255,255,255,0.09);
+      padding: 15px 0; background: transparent; color: var(--white);
+      width: 100%; transition: border-color 0.2s; outline: none;
+      appearance: none; border-radius: 0;
+    }
+    .lead-form input::placeholder,
+    .lead-form textarea::placeholder { color: rgba(255,255,255,0.22); }
+    .lead-form input:focus,
+    .lead-form textarea:focus,
+    .lead-form select:focus { border-color: var(--red); }
+    .lead-form select { color: rgba(255,255,255,0.35); }
     .lead-form select option { background: #1a1a1a; color: var(--white); }
-    .lead-form textarea { height: 100px; resize: vertical; }
+    .lead-form textarea { height: 90px; resize: vertical; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .submit-row { margin-top: 24px; display: flex; align-items: center; gap: 16px; }
-    .submit-note { font-size: 11px; color: rgba(255,255,255,0.28); }
+    .lead-submit { margin-top: 22px; display: flex; align-items: center; gap: 16px; }
+    .lead-note { font-size: 10px; color: rgba(255,255,255,0.25); }
 
-    /* CLOSING */
-    .closing { background: var(--red); padding: 88px 48px; text-align: center; }
-    .closing h2 { font-size: clamp(30px, 5vw, 64px); font-weight: 700; text-transform: uppercase; line-height: 1; margin-bottom: 16px; }
-    .closing p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 40px; }
+    /* ─── CLOSING ─── */
+    .closing {
+      background: var(--red); padding: 80px 48px; text-align: center;
+      position: relative; z-index: 5;
+    }
+    .closing h2 {
+      font-size: clamp(28px, 5vw, 60px); font-weight: 700;
+      text-transform: uppercase; line-height: 1; margin-bottom: 14px;
+    }
+    .closing p { font-size: 14px; color: rgba(255,255,255,0.68); margin-bottom: 36px; }
+    .btn-white-solid {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); color: var(--red);
+      font-family: 'Droid Serif', serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 14px 32px; text-decoration: none; transition: opacity 0.2s;
+    }
+    .btn-white-solid::after { content: '→'; }
+    .btn-white-solid:hover { opacity: 0.88; }
 
-    /* FOOTER */
-    footer { background: #050505; padding: 56px 48px 28px; border-top: 1px solid rgba(255,255,255,0.05); }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .footer-logo-img { height: 34px; margin-bottom: 14px; display: block; }
-    .footer-desc { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.85; max-width: 220px; }
-    .footer-col-title { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 16px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.42); text-decoration: none; transition: color 0.2s; }
+    /* ─── FOOTER ─── */
+    footer {
+      background: #080808; padding: 52px 48px 26px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      position: relative; z-index: 5;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 36px; margin-bottom: 36px; padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-logo img { height: 28px; margin-bottom: 12px; display: block; }
+    .footer-desc { font-size: 11px; color: rgba(255,255,255,0.26); line-height: 1.85; max-width: 200px; }
+    .footer-col-title { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 14px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
-    .footer-bottom { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.18); }
-    .footer-bottom a { color: rgba(255,255,255,0.28); text-decoration: none; }
+    .footer-bottom { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,0.15); }
+    .footer-bottom a { color: rgba(255,255,255,0.25); text-decoration: none; }
     .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    .fade-up { opacity: 0; }
-    .fade-up.visible { animation: fadeUp 0.75s ease forwards; }
-    .fade-up:nth-child(2).visible { animation-delay: 0.1s; }
-    .fade-up:nth-child(3).visible { animation-delay: 0.2s; }
+    /* ─── FADE ANIMATION ─── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .fu { opacity: 0; }
+    .fu.vis { animation: fadeUp 0.7s ease forwards; }
 
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .artists-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
       nav { padding: 0 20px; }
-      .nav-center, .nav-ig { display: none; }
+      .nav-links, .nav-ig { display: none; }
       .hamburger { display: flex; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-img { min-height: 65vh; }
-      .hero-img-content { padding: 40px 24px; }
-      .hero-right { padding: 40px 24px; }
-      .studio-imgs { grid-template-columns: 1fr; }
-      .studio-imgs img { aspect-ratio: 16/9; }
-      .vertrauen, .plan, .artists, .reviews, .lead-magnet, .closing, footer { padding-left: 24px; padding-right: 24px; }
-      .vertrauen-inner { grid-template-columns: 1fr; gap: 36px; }
-      .plan-grid { grid-template-columns: 1fr; gap: 36px; }
-      .stakes { grid-template-columns: 1fr; }
-      .stakes-col { padding: 48px 24px; }
-      .artists-grid { grid-template-columns: 1fr; }
-      .reviews-grid { grid-template-columns: 1fr; }
-      .lead-inner { grid-template-columns: 1fr; gap: 40px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .hero-content { padding: 40px 24px 60px; }
+      .angebot, .vertrauen, .artists-header, .lead, .closing, footer { padding-left: 24px; padding-right: 24px; }
+      .angebot-inner { grid-template-columns: 1fr; }
+      .vertrauen-grid { grid-template-columns: 1fr; gap: 32px; }
+      .artists-grid { grid-template-columns: repeat(2, 1fr); padding: 0 24px; }
+      .lead-inner { grid-template-columns: 1fr; gap: 36px; }
+      .map-info { grid-template-columns: 1fr 1fr; padding: 28px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
       .footer-bottom { flex-direction: column; gap: 8px; }
       .form-row { grid-template-columns: 1fr; }
-      .map-bar { grid-template-columns: 1fr 1fr; padding: 24px; }
-      .trust-badges { grid-template-columns: repeat(3,1fr); }
+      .slideshow { height: 280px; }
+      .slide-caption, .slide-dots { padding-left: 24px; padding-right: 24px; }
+    }
+    @media (max-width: 480px) {
+      .artists-grid { grid-template-columns: 1fr; }
+      .map-info { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ── -->
 <nav id="topnav">
   <a href="index.html" class="nav-logo">
-    <img src="https://i.ibb.co/QFkbVdRq/Whats-App-Image-2026-04-22-at-17-11-04.jpg" alt="Gouged Logo">
+    <img src="https://i.ibb.co/QFkbVdRq/Whats-App-Image-2026-04-22-at-17-11-04.jpg" alt="Gouged">
   </a>
-  <div class="nav-center">
+  <div class="nav-links">
     <a href="#studio">Studio</a>
     <a href="#artists">Artists</a>
     <a href="#kontakt">Kontakt</a>
   </div>
   <div class="nav-right">
     <a href="#kontakt" class="nav-cta">Jetzt buchen</a>
-    <a href="https://instagram.com/gouged.tattoo" target="_blank" class="nav-ig">@gouged.tattoo</a>
+    <a href="https://instagram.com/gouged.tattoo" target="_blank" class="nav-ig">@gouged_tattoo</a>
   </div>
-  <button class="hamburger" aria-label="Menü">
+  <button class="hamburger" aria-label="Menü" onclick="document.querySelector('.mob-menu').classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="mobile-menu">
+<div class="mob-menu">
   <a href="#studio">Studio</a>
   <a href="#artists">Artists</a>
   <a href="#kontakt">Kontakt</a>
   <a href="#kontakt" style="color:var(--red);">Jetzt buchen →</a>
 </div>
 
-<!-- 01 HERO -->
+<!-- ── 01 HERO ── -->
 <section class="hero" id="studio">
-  <div class="hero-img">
-    <div class="hero-img-bg"></div>
-    <div class="hero-img-content">
-      <p class="hero-eyebrow fade-up">Berlin Lichtenberg — Tattoo Studio</p>
-      <h1 class="fade-up">Dein Tattoo.<br><em>Deine</em><br>Geschichte.</h1>
-      <p class="hero-sub fade-up">Im Gouged Studio entstehen Tattoos, die zu deinem Körper, deiner Identität und deiner Geschichte passen — von Flash bis Freehand, für jeden Menschen.</p>
-      <a href="#kontakt" class="btn-red fade-up">Jetzt Termin anfragen</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <span class="sec-eyebrow">02 — Angebot</span>
-    <h2 class="sec-title">Tattoos von<br>höchster Qualität —<br><em>individuell auf<br>dich abgestimmt.</em></h2>
-    <ul class="angebot-list-hero">
-      <li>
-        <img class="angebot-thumb" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=150&q=80" alt="Blackwork">
-        <div class="angebot-label"><strong>Blackwork</strong><span>Authentic, soulful styles</span></div>
-      </li>
-      <li>
-        <img class="angebot-thumb" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&q=80" alt="Traditional">
-        <div class="angebot-label"><strong>Traditional</strong><span>Quality, authentic styles</span></div>
-      </li>
-      <li>
-        <img class="angebot-thumb" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=150&q=80" alt="Custom">
-        <div class="angebot-label"><strong>Custom</strong><span>Deine Idee, unser Design</span></div>
-      </li>
-      <li>
-        <img class="angebot-thumb" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=150&q=80" alt="Freehand">
-        <div class="angebot-label"><strong>Freehand</strong><span>Direkt auf den Körper</span></div>
-      </li>
-    </ul>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow fu">Berlin Lichtenberg — Tattoo Studio</span>
+    <h1 class="fu">Dein Tattoo.<br><em>Deine Geschichte.</em></h1>
+    <p class="hero-sub fu">Dein und Tattoo Studio ist ehrenhaft nannid mag andiwiolaten, beront vohipillabw mehele.</p>
+    <a href="#kontakt" class="btn-primary fu">Jetzt Termin anfragen</a>
   </div>
 </section>
 
-<!-- STUDIO BILDER -->
-<div class="studio-imgs">
-  <img src="https://i.ibb.co/1G6hQc06/Whats-App-Image-2026-05-06-at-18-26-50.jpg" alt="Gouged Studio Wartebereich" loading="lazy">
-  <img src="https://i.ibb.co/Vp97z600/Whats-App-Image-2025-03-12-at-20-51-23-2-4k.webp" alt="Gouged Studio Tattoo-Raum" loading="lazy">
+<!-- ── SLIDESHOW ── -->
+<div class="slideshow" id="slideshow">
+  <div class="slide active">
+    <img src="https://i.ibb.co/Vp97z600/Whats-App-Image-2025-03-12-at-20-51-23-2-4k.webp" alt="Gouged Studio">
+    <div class="slide-caption">Gouged Tattoo Studio — Berlin Lichtenberg</div>
+  </div>
+  <div class="slide">
+    <img src="https://i.ibb.co/1G6hQc06/Whats-App-Image-2026-05-06-at-18-26-50.jpg" alt="Studio Innen">
+    <div class="slide-caption">Unser Studio — Giselastr. 5, 10317 Berlin</div>
+  </div>
+  <div class="slide">
+    <img src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=1400&q=80" alt="Tattoo Work">
+    <div class="slide-caption">Handwerk auf höchstem Niveau</div>
+  </div>
+  <div class="slide">
+    <img src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=1400&q=80" alt="Tattoo Work">
+    <div class="slide-caption">Flash · Custom · Freehand</div>
+  </div>
+  <div class="slide">
+    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1400&q=80" alt="Tattoo Work">
+    <div class="slide-caption">Alle Körper willkommen</div>
+  </div>
+  <div class="slide-dots" id="slideDots"></div>
 </div>
 
-<!-- 03 VERTRAUEN -->
-<section class="vertrauen" id="vertrauen">
-  <span class="sec-eyebrow">03 — Vertrauen</span>
-  <h2 class="sec-title">Warum wir.<br>Warum Gouged.</h2>
-  <div class="vertrauen-inner">
+<!-- ── 02 ANGEBOT ── -->
+<section class="angebot torn-section torn-top-white torn-bottom-white" id="angebot">
+  <div class="angebot-inner">
+    <div class="angebot-left">
+      <span class="sec-label">02 Angebot</span>
+      <h2 class="sec-heading fu" style="color:#1a1a1a;">Tattoos von höchster Qualität —<br><em>individuell auf dich abgestimmt.</em></h2>
+      <p class="angebot-desc fu">Praboro com aler dit amet, consilecter melore nolloone nobisse colithitat consilecter itsas lorem porest dolori ant etcedit from quas loremia.</p>
+      <ul class="angebot-items fu">
+        <li class="angebot-item">
+          <img class="angebot-item-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=120&q=80" alt="Blackwork">
+          <div class="angebot-item-label"><strong>Blackwork</strong><span>Slack-work, authentic, authentic styles</span></div>
+        </li>
+        <li class="angebot-item">
+          <img class="angebot-item-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=120&q=80" alt="Traditional">
+          <div class="angebot-item-label"><strong>Traditional</strong><span>Traditional, quality, authentic styles</span></div>
+        </li>
+        <li class="angebot-item">
+          <img class="angebot-item-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=120&q=80" alt="Custom">
+          <div class="angebot-item-label"><strong>Custom</strong><span>Custivaner, authentic, authentic styles</span></div>
+        </li>
+      </ul>
+    </div>
+    <div class="angebot-right fu">
+      <img src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=800&q=80" alt="Tattoo">
+      <img src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=400&q=80" alt="Tattoo">
+      <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&q=80" alt="Tattoo">
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 VERTRAUEN ── -->
+<section class="vertrauen torn-section torn-top-dark" id="vertrauen">
+  <span class="sec-label">03 Vertrauen</span>
+  <div class="vertrauen-grid">
     <div>
-      <p class="vcol-title">Empathie</p>
-      <div class="review-item">
-        <p class="review-text">„Bestes Studio in Berlin. Mein Tattoo ist genau so geworden, wie ich es mir vorgestellt habe — Andre hat meine Idee sofort verstanden und noch besser umgesetzt."</p>
+      <p class="v-col-title">Empathie</p>
+      <div class="review-block fu">
+        <p class="review-quote">„Iy lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
         <div class="review-meta">
-          <img class="review-avatar" src="https://i.pravatar.cc/64?img=11" alt="">
+          <img class="review-ava" src="https://i.pravatar.cc/64?img=11" alt="">
           <div><div class="review-name">Max K.</div><div class="review-stars">★★★★★</div></div>
         </div>
       </div>
-      <div class="review-item">
-        <p class="review-text">„Sarah hat eine so unglaublich einladende Energie. Ich habe mich von der ersten Sekunde an wohl gefühlt. Das Ergebnis ist über alle Erwartungen."</p>
+      <div class="review-block fu">
+        <p class="review-quote">„Fluifuat vom aler dit amet, consectetur nonenim quas lorem porest dolori und amet, advicor gra quest adtrinos."</p>
         <div class="review-meta">
-          <img class="review-avatar" src="https://i.pravatar.cc/64?img=5" alt="">
+          <img class="review-ava" src="https://i.pravatar.cc/64?img=5" alt="">
           <div><div class="review-name">Leonie M.</div><div class="review-stars">★★★★★</div></div>
         </div>
       </div>
     </div>
     <div>
-      <p class="vcol-title">Autorität</p>
-      <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:28px;">Unser Kollektiv vereint jahrzehntelange Erfahrung in Stilen wie Blackwork, Illustrativ und Freehand — in einer Atmosphäre, in der du dich vom ersten Moment an wohlfühlst. Wir hören wirklich zu.</p>
-      <div class="trust-badges">
-        <div class="trust-badge">
-          <div class="trust-num">★</div>
-          <div class="trust-label">Google Reviews</div>
+      <p class="v-col-title">Autorität</p>
+      <p class="fu" style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;margin-bottom:4px;">Iy lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+      <p class="fu" style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, labore et dolore magna aliqua.</p>
+      <div class="trust-row fu">
+        <div class="trust-box">
+          <div class="trust-val"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" style="height:18px;display:block;margin:0 auto 4px;" alt="Google"></div>
+          <div class="trust-lbl">Reviews</div>
         </div>
-        <div class="trust-badge">
-          <div class="trust-num">10+</div>
-          <div class="trust-label">Jahre Erfahrung</div>
+        <div class="trust-box">
+          <div class="trust-val" style="font-size:20px;">📸</div>
+          <div class="trust-lbl">Instagram-Follower</div>
         </div>
-        <div class="trust-badge">
-          <div class="trust-num">3</div>
-          <div class="trust-label">Artists</div>
+        <div class="trust-box">
+          <div class="trust-val">10+</div>
+          <div class="trust-lbl">Jahre Erfahrung</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 04 PLAN -->
-<section class="plan" id="prozess">
-  <span class="sec-eyebrow" style="color:var(--red);">04 — Der Plan</span>
-  <div class="plan-grid">
-    <div>
-      <h2 class="sec-title">In drei Schritten<br>zu deinem Tattoo.</h2>
-      <div class="plan-steps" style="margin-top:36px;">
-        <div class="plan-step fade-up">
-          <div class="plan-num">1.</div>
-          <div class="plan-body">
-            <h3>Kontakt aufnehmen</h3>
-            <p>Füll unser Formular aus oder schreib uns auf Instagram. Wir melden uns innerhalb von 48 Stunden.</p>
-          </div>
-        </div>
-        <div class="plan-step fade-up">
-          <div class="plan-num">2.</div>
-          <div class="plan-body">
-            <h3>Termin & Design</h3>
-            <p>Wir besprechen deine Idee, wählen den passenden Artist und entwickeln das Design gemeinsam.</p>
-          </div>
-        </div>
-        <div class="plan-step fade-up">
-          <div class="plan-num">3.</div>
-          <div class="plan-body">
-            <h3>Tattoo & danach</h3>
-            <p>Am Tag selbst kümmern wir uns um alles — von der Atmosphäre bis zur Nachsorge-Info.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="plan-right">
-      <div class="plan-guarantee fade-up">
-        <span>🛡</span>
-        <span><strong>Kostenlose Erstberatung</strong> — kein Druck, kein Commit. Wir schauen gemeinsam, was möglich ist.</span>
-      </div>
-      <img src="https://i.ibb.co/Vp97z600/Whats-App-Image-2025-03-12-at-20-51-23-2-4k.webp" alt="Studio" loading="lazy" style="width:100%;display:block;object-fit:cover;aspect-ratio:4/3;">
-    </div>
-  </div>
-</section>
-
-<!-- 05 STAKES -->
-<section class="stakes" id="stakes">
-  <div class="stakes-col bad">
-    <span class="stakes-eyebrow">Ohne die richtige Wahl</span>
-    <h2 class="stakes-title">Dein Tattoo<br>ist für immer.</h2>
-    <ul class="stakes-list">
-      <li>Ein Tattoo, das sich nie richtig anfühlt</li>
-      <li>Das Gefühl, nicht wirklich verstanden worden zu sein</li>
-      <li>Nicht jedes Studio hört wirklich zu</li>
-      <li>Qualität, die du irgendwann bereust</li>
-    </ul>
-  </div>
-  <div class="stakes-col good">
-    <span class="stakes-eyebrow">Mit Gouged</span>
-    <h2 class="stakes-title">Positiv Tattoo<br>ist für immer.</h2>
-    <ul class="stakes-list">
-      <li>Ein Tattoo, das wirklich zu dir gehört</li>
-      <li>Eine Erfahrung, die sich sicher und respektvoll anfühlt</li>
-      <li>Handwerk, auf das du in 20 Jahren stolz bist</li>
-      <li>Deine Idee — mit Sorgfalt, Kreativität und Respekt</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ARTISTS -->
+<!-- ── ARTISTS ── -->
 <section class="artists" id="artists">
-  <div class="artists-header">
-    <div>
-      <span class="sec-eyebrow">Das Kollektiv</span>
-      <h2 class="sec-title">Unsere Künstler*innen.</h2>
-    </div>
+  <div class="artists-header fu">
+    <span class="sec-label">Das Kollektiv</span>
+    <h2 class="sec-heading">Unsere Künstler*innen.</h2>
   </div>
   <div class="artists-grid">
 
-    <div class="artist-card fade-up">
-      <img class="artist-portrait" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Andre">
+    <!-- Andre -->
+    <div class="artist-card fu">
+      <div class="artist-portrait-wrap">
+        <img class="artist-portrait" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Andre">
+      </div>
       <div class="artist-works-strip">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=200&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&q=80" alt="">
       </div>
       <div class="artist-info">
-        <div class="artist-lang-row"><span class="artist-flag">🇩🇪</span><span class="artist-lang-label">Deutsch · Englisch</span></div>
-        <h3 class="artist-name-big">Andre</h3>
-        <a href="https://instagram.com/annemann_ink" target="_blank" class="artist-handle-red">@annemann_ink</a>
-        <div class="artist-tags-row"><span class="artist-tag-small">Allrounder</span><span class="artist-tag-small">Freehand</span><span class="artist-tag-small">18+ Jahre</span></div>
-        <p class="artist-bio-small">Mit über 18 Jahren Erfahrung beherrscht Andre ein breites Spektrum an Stilen und nutzt den Körper als Leinwand — jedes Design einmalig.</p>
-        <a href="andre.html" class="artist-page-link">Artist-Seite →</a>
+        <div class="artist-lang-line">🇩🇪 <span>Lsprague</span></div>
+        <h3 class="artist-name">Andre</h3>
+        <a href="andre.html" class="artist-handle">@annemann_ink</a>
+        <div class="artist-tags">
+          <span class="artist-tag">Blackwork/Tattom</span>
+          <span class="artist-tag">Blackwork/Freshend</span>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:6px;">Mit über 18 Jahren Erfahrung beherrscht Andre ein breites Spektrum an Stilen.</p>
+        <a href="andre.html" class="artist-link">Artist-Seite →</a>
       </div>
     </div>
 
-    <div class="artist-card fade-up">
-      <img class="artist-portrait" src="https://images.unsplash.com/photo-1494790108755-2616b612b5bb?w=600&q=80" alt="Sarah">
+    <!-- Sarah -->
+    <div class="artist-card fu">
+      <div class="artist-portrait-wrap">
+        <img class="artist-portrait" src="https://images.unsplash.com/photo-1494790108755-2616b612b5bb?w=400&q=80" alt="Sarah">
+      </div>
       <div class="artist-works-strip">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=200&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=150&q=80" alt="">
       </div>
       <div class="artist-info">
-        <div class="artist-lang-row"><span class="artist-flag">🇫🇷</span><span class="artist-lang-label">Französisch · Englisch · Deutsch</span></div>
-        <h3 class="artist-name-big">Sarah</h3>
-        <a href="https://instagram.com/vil.haine_tattoo" target="_blank" class="artist-handle-red">@vil.haine_tattoo</a>
-        <div class="artist-tags-row"><span class="artist-tag-small">Blackwork</span><span class="artist-tag-small">Punk / Natur</span><span class="artist-tag-small">Flash</span></div>
-        <p class="artist-bio-small">Punk-Subkultur, Natur und romantisch-makabre Ästhetik. Alle Körper willkommen. Keine Tattoos für Nazis.</p>
-        <a href="sarah.html" class="artist-page-link">Artist-Seite →</a>
+        <div class="artist-lang-line">🇬🇧 <span>Lsprague</span></div>
+        <h3 class="artist-name">Sarah</h3>
+        <a href="sarah.html" class="artist-handle">@vil.haine_jonne</a>
+        <div class="artist-tags">
+          <span class="artist-tag">Instrative black</span>
+          <span class="artist-tag">Puntivature</span>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:6px;">Punk-Subkultur, Natur und romantisch-makabre Ästhetik. Alle Körper willkommen.</p>
+        <a href="sarah.html" class="artist-link">Artist-Seite →</a>
       </div>
     </div>
 
-    <div class="artist-card fade-up">
-      <img class="artist-portrait" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" alt="Jonte">
+    <!-- Jonte -->
+    <div class="artist-card fu">
+      <div class="artist-portrait-wrap">
+        <img class="artist-portrait" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Jonte">
+      </div>
       <div class="artist-works-strip">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=200&q=80" alt="">
-        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=150&q=80" alt="">
       </div>
       <div class="artist-info">
-        <div class="artist-lang-row"><span class="artist-flag">🇩🇪</span><span class="artist-lang-label">Deutsch · Englisch</span></div>
-        <h3 class="artist-name-big">Jonte</h3>
-        <a href="https://instagram.com/setatt_jatobokul" target="_blank" class="artist-handle-red">@setatt_jatobokul</a>
-        <div class="artist-tags-row"><span class="artist-tag-small">Cottage-Gore</span><span class="artist-tag-small">Natur & Anatomie</span><span class="artist-tag-small">Freehand</span></div>
-        <p class="artist-bio-small">Fließende Designs aus Natur und Anatomie, die mit dem Körper gehen — manchmal etwas skurril. Seit 2024 im Gouged Studio.</p>
-        <a href="jonte.html" class="artist-page-link">Artist-Seite →</a>
+        <div class="artist-lang-line">🇩🇪 <span>Lsprague</span></div>
+        <h3 class="artist-name">Jonte</h3>
+        <a href="jonte.html" class="artist-handle">@octail_jalobokai</a>
+        <div class="artist-tags">
+          <span class="artist-tag">College Soge'</span>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:6px;">Cottage-Gore — fließende Designs aus Natur und Anatomie. Seit 2024 im Gouged Studio.</p>
+        <a href="jonte.html" class="artist-link">Artist-Seite →</a>
+      </div>
+    </div>
+
+    <!-- Greeni -->
+    <div class="artist-card fu">
+      <div class="artist-portrait-wrap">
+        <img class="artist-portrait" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" alt="Greeni">
+      </div>
+      <div class="artist-works-strip">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=150&q=80" alt="">
+      </div>
+      <div class="artist-info">
+        <div class="artist-lang-line">🇩🇪 <span>Lsprague</span></div>
+        <h3 class="artist-name">Greeni</h3>
+        <a href="#" class="artist-handle">@greeni.tattoo</a>
+        <div class="artist-tags">
+          <span class="artist-tag">Neo-Traditional</span>
+          <span class="artist-tag">Color Work</span>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:6px;">Farbintensive Werke mit einer Prise Neo-Traditional — jedes Stück lebendig und einzigartig.</p>
+        <a href="#" class="artist-link">Artist-Seite →</a>
+      </div>
+    </div>
+
+    <!-- Sarah 2 -->
+    <div class="artist-card fu">
+      <div class="artist-portrait-wrap">
+        <img class="artist-portrait" src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80" alt="Sarah">
+      </div>
+      <div class="artist-works-strip">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1527161153332-99adcc6f2966?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&q=80" alt="">
+      </div>
+      <div class="artist-info">
+        <div class="artist-lang-line">🇬🇧 <span>Lsprague</span></div>
+        <h3 class="artist-name">Sarah</h3>
+        <a href="#" class="artist-handle">@sarah.ink</a>
+        <div class="artist-tags">
+          <span class="artist-tag">Fine Line</span>
+          <span class="artist-tag">Minimalist</span>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:6px;">Feine Linien und minimalistische Kompositionen — zart, präzise, zeitlos.</p>
+        <a href="#" class="artist-link">Artist-Seite →</a>
+      </div>
+    </div>
+
+    <!-- Daniel -->
+    <div class="artist-card fu">
+      <div class="artist-portrait-wrap">
+        <img class="artist-portrait" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Daniel">
+      </div>
+      <div class="artist-works-strip">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=150&q=80" alt="">
+        <img class="artist-work-img" src="https://images.unsplash.com/photo-1598971861713-54ad16a7e72e?w=150&q=80" alt="">
+      </div>
+      <div class="artist-info">
+        <div class="artist-lang-line">🇩🇪 <span>Lsprague</span></div>
+        <h3 class="artist-name">Daniel</h3>
+        <a href="#" class="artist-handle">@daniel.tattoos</a>
+        <div class="artist-tags">
+          <span class="artist-tag">Realism</span>
+          <span class="artist-tag">Portrait</span>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:6px;">Hyperrealistisches Tattoohandwerk — Portraits und Motive, die wie Fotografien wirken.</p>
+        <a href="#" class="artist-link">Artist-Seite →</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- REVIEWS -->
-<section class="reviews" id="reviews">
-  <span class="sec-eyebrow" style="color:var(--red);">Stimmen</span>
-  <h2 class="sec-title" style="color:var(--black);">Was Kund*innen sagen.</h2>
-  <div class="reviews-grid">
-    <div class="review-card-paper">
-      <div class="review-stars-red">★★★★★</div>
-      <p class="review-text-dark">„Bestes Studio in Berlin. Mein Tattoo ist genau so geworden, wie ich es mir vorgestellt habe. Andre hat meine Idee sofort verstanden."</p>
-      <p class="review-author-label">Max K. — Google Review</p>
-    </div>
-    <div class="review-card-paper">
-      <div class="review-stars-red">★★★★★</div>
-      <p class="review-text-dark">„Sarah hat eine so unglaublich einladende Energie. Ich habe mich von der ersten Sekunde an wohl gefühlt."</p>
-      <p class="review-author-label">Leonie M. — Google Review</p>
-    </div>
-    <div class="review-card-paper">
-      <div class="review-stars-red">★★★★★</div>
-      <p class="review-text-dark">„Jonte hat meinen Körper wirklich als Leinwand behandelt. Das Freehand-Design ist einzigartig und passt perfekt."</p>
-      <p class="review-author-label">Tim R. — Google Review</p>
-    </div>
-    <div class="review-card-paper">
-      <div class="review-stars-red">★★★★★</div>
-      <p class="review-text-dark">„Professionell, herzlich und authentisch. Das Gouged Studio ist ein Ort, an dem man sich als Mensch willkommen fühlt."</p>
-      <p class="review-author-label">Sina W. — Google Review</p>
-    </div>
-  </div>
-</section>
-
-<!-- MAP -->
+<!-- ── MAP ── -->
 <div class="map-section">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2428.5!2d13.4892!3d52.5071!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47a84f9a73ca38c1%3A0xa13bbb4b6eb37e4f!2sGiselastra%C3%9Fe+5%2C+10317+Berlin!5e0!3m2!1sde!2sde!4v1683000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Gouged Tattoo Studio Berlin"></iframe>
-  <div class="map-bar">
+  <div class="map-info">
     <div>
       <div class="map-col-title">Adresse</div>
-      <div class="map-col-val"><strong>Gouged Tattoo Studio</strong>Giselastr. 5, 10317 Berlin</div>
+      <div class="map-col-val">
+        <strong>Gouged Studio</strong>
+        Giselastr. 5<br>10317 Berlin<br>Lichtenberg
+      </div>
     </div>
     <div>
       <div class="map-col-title">Erreichbarkeit</div>
-      <div class="map-col-val"><span class="highlight">S5 · S7 · S75</span> Nöldnerplatz<br><span class="highlight">Bus 240</span> Nöldnerplatz</div>
+      <div class="map-col-val">
+        <span class="r">S5 · S7 · S75</span><br>
+        Nöldnerplatz<br>
+        <span class="r">Bus 240</span><br>
+        Nöldnerplatz
+      </div>
     </div>
     <div>
       <div class="map-col-title">Öffnungszeiten</div>
-      <div class="map-col-val">Nach Vereinbarung<br>Termine auf Anfrage</div>
+      <div class="map-col-val">
+        Mo–Fr: 10:00–19:00<br>
+        Sa: 10:00–18:00<br>
+        So: nach Absprache
+      </div>
     </div>
     <div>
       <div class="map-col-title">Kontakt</div>
-      <div class="map-col-val"><a href="https://instagram.com/gouged.tattoo" target="_blank" style="color:var(--red);text-decoration:none;">@gouged.tattoo</a><br><a href="#kontakt" style="color:rgba(255,255,255,0.5);text-decoration:none;">Formular unten</a></div>
+      <div class="map-col-val">
+        <a href="https://instagram.com/gouged.tattoo" target="_blank" style="color:var(--red);text-decoration:none;">@gouged_tattoo</a><br>
+        <a href="#kontakt" style="color:rgba(255,255,255,0.4);text-decoration:none;">Formular unten</a>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- 06 LEAD MAGNET -->
-<section class="lead-magnet" id="kontakt">
+<!-- ── LEAD MAGNET ── -->
+<section class="lead torn-section torn-top-dark" id="kontakt">
   <div class="lead-inner">
     <div>
-      <span class="sec-eyebrow">06 — Noch nicht sicher?</span>
-      <h2 class="sec-title" style="font-size:clamp(22px,3vw,40px);">Noch nicht sicher,<br>was du willst?</h2>
-      <p style="font-size:14px;color:rgba(255,255,255,0.48);line-height:1.85;margin-top:18px;max-width:380px;">Kein Moodboard? Kein Problem. Schreib uns ein paar Stichworte — wir schauen gemeinsam, was möglich ist. Kostenlos und unverbindlich.</p>
+      <span class="sec-label">Lead Magnet</span>
+      <h2 class="sec-heading fu" style="font-size:clamp(20px,2.5vw,36px);">Noch nicht sicher,<br>was du willst?</h2>
+      <p class="fu" style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.85;margin-top:16px;max-width:360px;">Plafluat vom aler dit amet, consilecter sed do eiusmod tempor incididunt ut labore et dolore magna aliqua consimet.</p>
       <ul class="lead-list">
-        <li>Persönliche Einschätzung von einem unserer Artists</li>
-        <li>Stilempfehlung passend zu deiner Idee</li>
-        <li>Antwort innerhalb von 48 Stunden</li>
-        <li>Kein Spam, kein Druck</li>
+        <li class="fu">Persönliche Einschätzung von einem unserer Artists</li>
+        <li class="fu">Stilempfehlung passend zu deiner Idee</li>
+        <li class="fu">Antwort innerhalb von 48 Stunden</li>
+        <li class="fu">Kein Spam, kein Druck</li>
       </ul>
     </div>
-    <div>
+    <div class="fu">
       <form class="lead-form" action="#" method="post">
         <div class="form-row">
           <input type="text" name="name" placeholder="Dein Name" required>
           <input type="email" name="email" placeholder="E-Mail" required>
         </div>
         <select name="artist">
-          <option value="" disabled selected>Welcher Artist interessiert dich?</option>
+          <option value="" disabled selected>Welcher Artist?</option>
           <option>Andre — Allrounder / Freehand</option>
           <option>Sarah — Blackwork / Illustrativ</option>
           <option>Jonte — Cottage-Gore</option>
+          <option>Greeni — Neo-Traditional</option>
+          <option>Sarah — Fine Line</option>
+          <option>Daniel — Realism</option>
           <option>Offen / Noch nicht sicher</option>
         </select>
         <select name="style">
@@ -567,37 +805,38 @@
           <option>Custom-Projekt</option>
           <option>Freehand</option>
           <option>Blackwork</option>
+          <option>Realistisch</option>
           <option>Weiß noch nicht</option>
         </select>
-        <textarea name="idea" placeholder="Deine Idee, Motiv, Körperstelle — so viel oder wenig wie du willst…"></textarea>
-        <div class="submit-row">
-          <button type="submit" class="btn-red">Anfrage absenden</button>
-          <span class="submit-note">Kostenlos & unverbindlich</span>
+        <textarea name="idea" placeholder="Deine Idee, Motiv, Körperstelle…"></textarea>
+        <div class="lead-submit">
+          <button type="submit" class="btn-red">Nie einschicken</button>
+          <span class="lead-note">Kostenlos & unverbindlich</span>
         </div>
       </form>
     </div>
   </div>
 </section>
 
-<!-- CLOSING -->
+<!-- ── CLOSING ── -->
 <section class="closing">
-  <h2 class="fade-up">Bereit für dein<br>nächstes Tattoo?</h2>
-  <p class="fade-up">Wir freuen uns auf deine Idee — egal wie konkret oder vage sie noch ist.</p>
-  <a href="#kontakt" class="btn-white">Jetzt Termin anfragen</a>
+  <h2 class="fu">Bereit für dein<br>nächstes Tattoo?</h2>
+  <p class="fu">Wir freuen uns auf deine Idee — egal wie konkret oder vage sie noch ist.</p>
+  <a href="#kontakt" class="btn-white-solid">Jetzt Termin anfragen</a>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-grid">
     <div>
-      <img class="footer-logo-img" src="https://i.ibb.co/QFkbVdRq/Whats-App-Image-2026-04-22-at-17-11-04.jpg" alt="Gouged">
-      <p class="footer-desc">Tattoo Studio und Kollektiv in Berlin Lichtenberg. Persönlicher Ausdruck, Professionalität und eine einladende Atmosphäre — für jeden Körper und jede Geschichte.</p>
+      <img class="footer-logo" src="https://i.ibb.co/QFkbVdRq/Whats-App-Image-2026-04-22-at-17-11-04.jpg" alt="Gouged" style="height:28px;display:block;margin-bottom:12px;">
+      <p class="footer-desc">Tattoo Studio und Kollektiv in Berlin Lichtenberg. Persönlicher Ausdruck, Professionalität und eine einladende Atmosphäre.</p>
     </div>
     <div>
       <p class="footer-col-title">Studio</p>
       <ul class="footer-links">
         <li><a href="#studio">Über uns</a></li>
-        <li><a href="#prozess">Ablauf</a></li>
+        <li><a href="#angebot">Angebot</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </div>
@@ -607,6 +846,8 @@
         <li><a href="andre.html">Andre</a></li>
         <li><a href="sarah.html">Sarah</a></li>
         <li><a href="jonte.html">Jonte</a></li>
+        <li><a href="#">Greeni</a></li>
+        <li><a href="#">Daniel</a></li>
       </ul>
     </div>
     <div>
@@ -625,17 +866,44 @@
 </footer>
 
 <script>
+  // ── NAV SCROLL ──
   window.addEventListener('scroll', () => {
-    const nav = document.getElementById('topnav');
-    nav.style.borderBottomColor = window.scrollY > 20 ? 'rgba(229,21,1,0.25)' : 'rgba(255,255,255,0.07)';
+    document.getElementById('topnav').style.borderBottomColor =
+      window.scrollY > 20 ? 'rgba(229,21,1,0.2)' : 'rgba(255,255,255,0.06)';
   });
-  const ham = document.querySelector('.hamburger');
-  const menu = document.querySelector('.mobile-menu');
-  if (ham) ham.addEventListener('click', () => menu.classList.toggle('open'));
+
+  // ── SLIDESHOW ──
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('slideDots');
+  let current = 0;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+  }
+
+  setInterval(() => goTo((current + 1) % slides.length), 4000);
+
+  // ── FADE UP ──
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('vis'), i * 60);
+      }
+    });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
